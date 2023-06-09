@@ -1,6 +1,8 @@
 package jm.task.core.jdbc.dao;
+
 import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.util.Util;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,16 +12,13 @@ import java.util.List;
 
 public class UserDaoJDBCImpl implements UserDao {
     public UserDaoJDBCImpl() {
-
     }
 
     public void createUsersTable() {
         String sqlCommand = "CREATE TABLE IF NOT EXISTS users (Id INT PRIMARY KEY AUTO_INCREMENT, Name VARCHAR(20), LastName VARCHAR(20), Age INT)";
         try (Connection conn = Util.getConnection()) {
             Statement statement = conn.createStatement();
-            // создание таблицы
             statement.executeUpdate(sqlCommand);
-
             System.out.println("Database has been created!");
         } catch (SQLException e) {
             System.out.println("Connection failed...");
@@ -83,7 +82,6 @@ public class UserDaoJDBCImpl implements UserDao {
         }
         return users;
     }
-
 
     public void cleanUsersTable() {
         String sqlCommand = "DELETE FROM users";
